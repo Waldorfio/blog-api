@@ -31,15 +31,12 @@ const user_create = [
       try {
         bcrypt.hash(req.body.password, 10, (err, hashedPassword) => { // * New bcryptjs line
             const newuser = User.create({
-              firstname: req.body.firstname,
-              lastname: req.body.lastname,
               username: req.body.username,
               password: hashedPassword,
-              membership: false, // default membership should be false
               admin: req.body.admin,
             })
             console.log('user created! ('+newuser+')');
-            res.redirect('/');
+            res.send('User created')
         }) // * New bcryptjs line
       } catch(err) {
         console.error(err);
@@ -52,16 +49,8 @@ const user_create = [
 // READ
 const user_read = async (req, res) => {
   try {
-    const founduser = await User.findById(req.params.id);
-    res.render('userform', {
-      type: 'Update',
-      action:'/user/'+founduser.id,
-      firstname: founduser.firstname,
-      lastname: founduser.lastname,
-      username: founduser.username,
-      password: founduser.password,
-      admin: founduser.admin,
-    })
+    const user = await User.findById(req.params.id);
+    res.send(Object.values(user))
   } catch(err) {
     console.error(err);
     res.redirect('error', err);
@@ -92,7 +81,7 @@ const user_update = [
               admin: req.body.admin
           });
         console.log('user updated! ('+newuser+')');
-        res.redirect('/allusers');
+        res.send('User updated');
       } catch(err) {
         console.error(err);
         res.redirect('error', err);
@@ -102,19 +91,11 @@ const user_update = [
 ]
 
 // DESTROY
-const user_destroy_get = async (req, res) => {
-  try {
-    res.render('delete');
-  } catch(err) {
-    console.error(err);
-    res.redirect('error', err);
-  }
-}
-const user_destroy_post = async (req, res) => {
+const user_destroy = async (req, res) => {
     try {
         const founduser = await User.findByIdAndDelete(req.params.id);
-        console.log('user deleted! ('+founduser+')');
-        res.redirect('/allusers');
+        console.log('user deleted! '+founduser);
+        res.send('User destroyed')
     } catch(err) {
         console.error(err);
         res.redirect('error', err);
@@ -123,10 +104,8 @@ const user_destroy_post = async (req, res) => {
 
 module.exports = {
     users_page,
-    user_create_get,
-    user_create_post,
+    user_create,
     user_read,
     user_update,
-    user_destroy_get,
-    user_destroy_post,
+    user_destroy,
 }

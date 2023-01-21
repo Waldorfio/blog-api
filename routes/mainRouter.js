@@ -47,8 +47,7 @@ router.get('/user/:id', userController.user_read);
 // UPDATE
 router.post('/user/:id', userController.user_update);
 // DESTROY
-router.get('/user/:id/delete', userController.user_destroy_get); // redirect to delete page, asking to confirm deletion
-router.post('/user/:id/delete', userController.user_destroy_post); // process delete.js submit button
+router.post('/user/:id/delete', userController.user_destroy); // process delete.js submit button
 
 // * LOGIN ROUTES
 // LOG IN
