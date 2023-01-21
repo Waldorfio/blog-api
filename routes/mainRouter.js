@@ -41,8 +41,7 @@ router.post('/post/:id/msg/:id/delete', msgController.msg_destroy_post); // proc
 // SHOW ALL
 router.get('/allusers', userController.users_page); // render page of all users
 // CREATE
-router.get('/user/create', userController.user_create_get); // redirect to create form
-router.post('/user/create', userController.user_create_post);
+router.post('/user/create', userController.user_create);
 // READ
 router.get('/user/:id', userController.user_read);
 // UPDATE

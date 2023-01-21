@@ -4,14 +4,11 @@ const { body, validationResult } = require('express-validator');
 const async = require('async');
 const bcrypt = require('bcryptjs');
 
-// Render users page
+// Render all users
 const users_page = async (req, res, next) => {
   try {
-    const users_list = await User.find();
-    res.render('allusers', {
-      currentuser: req.user,
-      users: users_list,
-    });
+    const users = await User.find();
+    res.send(Object.values(users));
   } catch(err) {
     console.error(err);
     res.redirect('error', err);
@@ -19,18 +16,7 @@ const users_page = async (req, res, next) => {
 }
 
 // CREATE
-const user_create_get = async (req, res) => {
-  try {
-    res.render('userform', { // Set placeholder values in create form
-      type: 'Create',
-      action:'/user/create',
-    });
-  } catch(err) {
-    console.error(err);
-    res.redirect('error', err);
-  }   
-}
-const user_create_post = [
+const user_create = [
   // Validate & sanitize
   body('username').isLength({ min: 1 }).withMessage('username must be at least 1 character'),
   body('password').optional({checkFalsy:true}),
