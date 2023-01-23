@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config(); // initialises dotenv
-const mongoDB = 'mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PASSWORD+'@cluster0.0lvrsmq.mongodb.net/?retryWrites=true&w=majority';
+const mongoDB = 'mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PASSWORD+'@blog-api.meyotuc.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
