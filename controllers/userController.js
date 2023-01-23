@@ -30,12 +30,12 @@ const user_create = [
     } else {
       try {
         bcrypt.hash(req.body.password, 10, (err, hashedPassword) => { // * New bcryptjs line
-            const newuser = User.create({
+            const newUser = User.create({
               username: req.body.username,
               password: hashedPassword,
               admin: req.body.admin,
             })
-            console.log('user created! ('+newuser+')');
+            console.log('User created! ('+newUser+')');
             res.send('User created')
         }) // * New bcryptjs line
       } catch(err) {
@@ -71,7 +71,7 @@ const user_update = [
       res.send('Validation Error: '+errors.array()[0].msg);
     } else {
       try {
-        const newuser = await User.findByIdAndUpdate(
+        const newUser = await User.findByIdAndUpdate(
           { _id: req.params.id },
           {
               firstname: req.body.firstname,
@@ -80,7 +80,7 @@ const user_update = [
               password: req.body.password,
               admin: req.body.admin
           });
-        console.log('user updated! ('+newuser+')');
+        console.log('User updated! ('+newUser+')');
         res.send('User updated');
       } catch(err) {
         console.error(err);
@@ -93,8 +93,8 @@ const user_update = [
 // DESTROY
 const user_destroy = async (req, res) => {
     try {
-        const founduser = await User.findByIdAndDelete(req.params.id);
-        console.log('user deleted! '+founduser);
+        const foundUser = await User.findByIdAndDelete(req.params.id);
+        console.log('User deleted! '+foundUser);
         res.send('User destroyed')
     } catch(err) {
         console.error(err);
