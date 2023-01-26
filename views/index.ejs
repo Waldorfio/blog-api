@@ -7,5 +7,22 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <br>
+    <a href="/users">/users</a>
+    <h3>Create User</h3>
+    <form method="POST" action='/users/create'>
+      <label for="username">Username</label>
+          <input name="username" placeholder="username" type="text" />
+      <label for="password">Password</label>
+          <input name="password" placeholder="password" type="password" />
+      <input type="submit" value='Create'>
+  </form>
+    <br>
+
+    <h1>Posts</h1>
+    <a href="/posts">/posts</a>
+
+
+
   </body>
 </html>
