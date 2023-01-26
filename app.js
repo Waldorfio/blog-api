@@ -7,6 +7,7 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require('bcryptjs');
+const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const mainRouter = require('./routes/mainRouter');  // * import main router
@@ -16,6 +17,9 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+// * Set up cors
+app.use(cors());
 
 // * Set up mongoose connection
 const mongoose = require("mongoose");
