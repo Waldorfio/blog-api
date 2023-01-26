@@ -22,6 +22,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config(); // initialises dotenv
 const mongoDB = 'mongodb://mongo:7oz84UP3fk8aUmD80i55@containers-us-west-58.railway.app:5830'
+const mongoDB = DB_MONGOURL;
 // const mongoDB = 'mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PASSWORD+'@blog-api.meyotuc.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
