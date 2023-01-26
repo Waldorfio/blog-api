@@ -9,7 +9,6 @@ const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require('bcryptjs');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const mainRouter = require('./routes/mainRouter');  // * import main router
 
 const app = express();
@@ -22,7 +21,8 @@ app.set('view engine', 'ejs');
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config(); // initialises dotenv
-const mongoDB = 'mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PASSWORD+'@blog-api.meyotuc.mongodb.net/?retryWrites=true&w=majority';
+const mongoDB = 'mongodb://mongo:7oz84UP3fk8aUmD80i55@containers-us-west-58.railway.app:5830'
+// const mongoDB = 'mongodb+srv://'+process.env.DB_USERNAME+':'+process.env.DB_PASSWORD+'@blog-api.meyotuc.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
@@ -85,7 +85,6 @@ app.use(function(req, res, next) {
 // * VIEWS
 // Import routers
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/', mainRouter);
 
 // catch 404 and forward to error handler
