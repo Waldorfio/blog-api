@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 const users_page = async (req, res, next) => {
   try {
     const users = await User.find();
-    res.send(Object.values(users));
+    res.send(users);
   } catch(err) {
     console.error(err);
     res.redirect('error', err);
