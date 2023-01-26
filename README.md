@@ -11,3 +11,6 @@ The API has the following endpoints:
 - `POST /posts`: Create a new post
 - `PUT /posts/:id`: Update a specific post by ID
 - `DELETE /posts/:id`: Delete a specific post by ID
+
+## API URL
+The public [API URL](https://blog-api-production-6aeb.up.railway.app/)
