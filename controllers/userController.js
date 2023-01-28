@@ -50,7 +50,7 @@ const user_create = [
 const user_read = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
-    res.send(Object.values(user))
+    res.send(user);
   } catch(err) {
     console.error(err);
     res.redirect('error', err);

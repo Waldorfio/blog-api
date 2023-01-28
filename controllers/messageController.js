@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 const msgs_page = async (req, res, next) => {
   try {
     const msgs = await Msg.find();
-    res.send(Object.values(msgs));
+    res.send(msgs);
   } catch(err) {
     console.error(err);
     res.redirect('error', err);
@@ -50,7 +50,7 @@ const msg_create = [
 const msg_read = async (req, res) => {
   try {
     const msg = await Msg.findById(req.params.id);
-    res.send(Object.values(msg))
+    res.send(msg);
   } catch(err) {
     console.error(err);
     res.redirect('error', err);
