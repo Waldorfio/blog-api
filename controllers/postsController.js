@@ -50,7 +50,7 @@ const posts_create = [
 const posts_read = async (req, res) => {
   try {
     const post = await Posts.findById(req.params.id);
-    res.send(Object.values(post))
+    res.send(post);
   } catch(err) {
     console.error(err);
     res.redirect('error', err);
