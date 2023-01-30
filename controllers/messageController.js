@@ -17,7 +17,7 @@ const msgs_page = async (req, res, next) => {
 
 const msg_create = async (req, res) => {
     try {
-        await Message.create({
+        await Msg.create({
             post: req.post, // TODO: need to make sure this is referenced properly in front-end
             user: req.user, // TODO: need to make sure this is referenced properly in front-end
             date: req.body.date,
