@@ -15,36 +15,21 @@ const msgs_page = async (req, res, next) => {
   }
 }
 
-// CREATE
-const msg_create = [
-  // Validate & sanitize
-
-
-  // Run async callback
-  async (req, res) => {
-    const errors = validationResult(req); // Capture any validation errors parsed above
-    if (!errors.isEmpty()) {
-      console.error(errors.array());
-      res.send('Validation Error: '+errors.array()[0].msg);
-    } else {
-      try {
-        const newMsg = await Msg.create(
-          { _id: req.params.id },
-          {
-              post: req.body.post, // TODO: need to make sure this is referenced properly in front-end
-              username: req.body.user, // TODO: need to make sure this is referenced properly in front-end
-              date: req.body.date,
-              text: req.body.text,
-          });
-        console.log('Msg created! ('+newMsg+')');
+const msg_create = async (req, res) => {
+    try {
+        await Message.create({
+            post: req.post, // TODO: need to make sure this is referenced properly in front-end
+            user: req.user, // TODO: need to make sure this is referenced properly in front-end
+            date: req.body.date,
+            text: req.body.text,
+        });
+        console.log('Msg created! ');
         res.send('Msg created');
-      } catch(err) {
+    } catch(err) {
         console.error(err);
         res.redirect('error', err);
-      }
     }
-  }
-]
+}
 
 // READ
 const msg_read = async (req, res) => {
