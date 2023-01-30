@@ -23,8 +23,6 @@ const msg_create = async (req, res) => {
             date: req.body.date,
             text: req.body.text,
         });
-        console.log('Msg created! ');
-        res.send('Msg created');
     } catch(err) {
         console.error(err);
         res.redirect('error', err);
