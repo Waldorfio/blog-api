@@ -81,7 +81,6 @@ const user_update = [
               admin: req.body.admin
           });
         console.log('User updated! ('+newUser+')');
-        res.send('User updated');
       } catch(err) {
         console.error(err);
         res.redirect('error', err);
