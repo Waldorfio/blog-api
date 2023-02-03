@@ -15,6 +15,7 @@ router.put('/posts/:id', postsController.posts_update); // UPDATE
 router.delete('/posts/:id/delete', postsController.posts_destroy); // DESTROY
 
 // * POST MESSAGE ROUTES
+router.get('/msgs', msgController.msgs_all); // show all messages on an individual post
 router.get('/posts/:id/msg', msgController.msgs_page); // show all messages on an individual post
 router.post('/posts/:id/msg/create', msgController.msg_create); // CREATE
 router.get('/posts/:id/msg/:id', msgController.msg_read); // READ

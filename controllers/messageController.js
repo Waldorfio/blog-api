@@ -4,7 +4,18 @@ const { body, validationResult } = require('express-validator');
 const async = require('async');
 const bcrypt = require('bcryptjs');
 
-// Render all posts
+// Render all messages
+const msgs_all = async (req, res, next) => {
+  try {
+    const msgs = await Msg.find();
+    res.send(msgs);
+  } catch(err) {
+    console.error(err);
+    res.redirect('error', err);
+  }
+}
+
+// Render all messages for a post
 const msgs_page = async (req, res, next) => {
   try {
     const msgs = await Msg.find();
@@ -84,6 +95,7 @@ const msg_destroy = async (req, res) => {
 }
 
 module.exports = {
+    msgs_all,
     msgs_page,
     msg_create,
     msg_read,
