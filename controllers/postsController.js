@@ -37,7 +37,6 @@ const posts_create = [
               content: req.body.content,
           });
         console.log('Post create! ('+newPost+')');
-        res.send('Post created');
       } catch(err) {
         console.error(err);
         res.redirect('error', err);
@@ -79,7 +78,6 @@ const posts_update = [
               content: req.body.content,
           });
         console.log('Post updated! ('+newPost+')');
-        res.send('Post updated');
       } catch(err) {
         console.error(err);
         res.redirect('error', err);
@@ -93,7 +91,6 @@ const posts_destroy = async (req, res) => {
     try {
         const foundPost = await Posts.findByIdAndDelete(req.params.id);
         console.log('Post deleted! '+foundPost);
-        res.send('Post destroyed');
     } catch(err) {
         console.error(err);
         res.redirect('error', err);

@@ -87,7 +87,6 @@ const msg_destroy = async (req, res) => {
     try {
         const foundMsg = await Msg.findByIdAndDelete(req.params.id);
         console.log('Msg deleted! '+foundMsg);
-        res.send('Msg destroyed');
     } catch(err) {
         console.error(err);
         res.redirect('error', err);

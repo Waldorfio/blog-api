@@ -36,7 +36,6 @@ const user_create = [
               admin: req.body.admin,
             })
             console.log('User created! ('+newUser+')');
-            res.send('User created')
         }) // * New bcryptjs line
       } catch(err) {
         console.error(err);
@@ -93,8 +92,6 @@ const user_update = [
 const user_destroy = async (req, res) => {
     try {
         const foundUser = await User.findByIdAndDelete(req.params.id);
-        console.log('User deleted! '+foundUser);
-        res.send('User destroyed')
     } catch(err) {
         console.error(err);
         res.redirect('error', err);
