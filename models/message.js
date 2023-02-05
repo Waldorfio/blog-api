@@ -8,6 +8,7 @@ const MessageSchema = new Schema({
     username: { type: String, required: true }, // username of user
     date: { type: Date, required: false, default: Date.now }, // The date of the message posted
     text: { type: String, required: true },
+    likes: { type: Number, default: 0 },
 })
 
 MessageSchema.virtual("date_formatted").get(function () {
