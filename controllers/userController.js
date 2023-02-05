@@ -35,6 +35,7 @@ const user_create = [
               password: hashedPassword,
               admin: req.body.admin,
             })
+            res.send(newUser);
             console.log('User created! ('+newUser+')');
         }) // * New bcryptjs line
       } catch(err) {
