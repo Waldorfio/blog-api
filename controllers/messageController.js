@@ -28,12 +28,13 @@ const msgs_page = async (req, res, next) => {
 
 const msg_create = async (req, res) => {
     try {
-        await Msg.create({
+        const newMsg = await Msg.create({
             postid: req.params.id,
             username: req.body.username,
             date: req.body.date,
             text: req.body.text,
         });
+        res.send(newMsg);
     } catch(err) {
         console.error(err);
         res.redirect('error', err);
