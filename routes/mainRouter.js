@@ -32,8 +32,20 @@ router.delete('/users/:id/delete', userController.user_destroy); // DESTROY
 // * LOGIN ROUTES
 // LOG IN
 router.post("/log-in", 
-    passport.authenticate("local", { successRedirect: "/", failureRedirect: "/", failureMessage: true }),
-);
+    passport.authenticate("local", { successRedirect: "/", failureRedirect: "/404", failureMessage: true }), (req, res) => {
+    if (req.user) {
+      return res.status(200).json({ success: true, user: req.user });
+    } else {
+      return res.status(401).json({ success: false, message: 'Incorrect username or password' });
+    }
+    });
+// router.post('/login', passport.authenticate('local', { session: false }), (req, res) => {
+//   if (req.user) {
+//     return res.status(200).json({ success: true, user: req.user });
+//   } else {
+//     return res.status(401).json({ success: false, message: 'Incorrect username or password' });
+//   }
+// });
 // LOG OUT
 router.get("/log-out", (req, res, next) => {
   req.logout(function (err) {
